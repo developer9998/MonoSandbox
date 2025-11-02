@@ -329,9 +329,9 @@ public class Balloon : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 newVelocity = gameObject.GetComponent<Rigidbody>().velocity.normalized;
+        Vector3 newVelocity = gameObject.GetComponent<Rigidbody>().linearVelocity.normalized;
         newVelocity *= maxSpeed;
-        gameObject.GetComponent<Rigidbody>().velocity = newVelocity;
+        gameObject.GetComponent<Rigidbody>().linearVelocity = newVelocity;
         gameObject.GetComponent<Rigidbody>().AddForce(0, -Physics.gravity.y + (float)Math.Pow(3, 4) + power, 0);
     }
 }
@@ -438,8 +438,8 @@ public static class Softbody
 
         Rigidbody rb = go.AddComponent<Rigidbody>();
         rb.mass = mass;
-        rb.drag = 0f;
-        rb.angularDrag = 10f;
+        rb.linearDamping = 0f;
+        rb.angularDamping = 10f;
         rb.constraints = Constraints;
         return rb;
     }

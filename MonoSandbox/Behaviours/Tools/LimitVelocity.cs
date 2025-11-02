@@ -17,7 +17,7 @@ namespace MonoSandbox.Behaviours.Tools
             {
                 rb = GetComponent<Rigidbody>();
             }
-            gameObject.GetComponent<Rigidbody>().velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+            gameObject.GetComponent<Rigidbody>().linearVelocity = Vector3.ClampMagnitude(rb.linearVelocity, maxSpeed);
         }
     }
 }

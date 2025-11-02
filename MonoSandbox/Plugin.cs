@@ -270,7 +270,7 @@ namespace MonoSandbox
 
         public void Update()
         {
-            if (Player.Instance != null) RefCache.HitExists = Physics.Raycast(Player.Instance.rightControllerTransform.position, Player.Instance.rightControllerTransform.forward, out RefCache.Hit, 2000, _layerMask);
+            if (Player.Instance != null) RefCache.HitExists = Physics.Raycast(Player.Instance.RightHand.controllerTransform.position, Player.Instance.RightHand.controllerTransform.forward, out RefCache.Hit, 2000, _layerMask);
 
             #region List
 
