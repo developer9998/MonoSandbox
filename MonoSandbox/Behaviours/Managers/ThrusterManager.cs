@@ -1,4 +1,5 @@
-﻿using MonoSandbox;
+﻿using GorillaLibrary.Utilities;
+using MonoSandbox;
 using MonoSandbox.Behaviours;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,7 +29,7 @@ public class ThrusterManager : MonoBehaviour
 
             Cursor.transform.position = hitInfo.point;
             Cursor.transform.forward = -hitInfo.normal;
-            primaryDown = InputHandling.RightPrimary;
+            primaryDown = InputUtility.RightPrimary.pressed;
             if (primaryDown)
             {
                 if (canPlace && isAllowed)
@@ -85,7 +86,7 @@ public class ThrusterControls : MonoBehaviour
 
     void Update()
     {
-        gripDown = InputHandling.RightGrip;
+        gripDown = InputUtility.RightGrip.GetValue();
         if (gripDown > 0.3f)
         {
             if (!particle.GetComponent<AudioSource>().isPlaying)

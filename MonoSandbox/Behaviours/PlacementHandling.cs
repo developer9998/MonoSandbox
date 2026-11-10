@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using GorillaLibrary.Utilities;
+using UnityEngine;
 
 namespace MonoSandbox.Behaviours
 {
@@ -54,7 +55,7 @@ namespace MonoSandbox.Behaviours
                 if (RefCache.HitExists)
                     DrawCursor(hitInfo);
 
-                IsActivated = InputHandling.RightPrimary;
+                IsActivated = InputUtility.RightPrimary.GetValue();
                 if (IsActivated && !Placed)
                 {
                     Placed = true;

@@ -1,4 +1,5 @@
-﻿using MonoSandbox;
+﻿using GorillaLibrary.Utilities;
+using MonoSandbox;
 using MonoSandbox.Behaviours;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -46,7 +47,7 @@ public class C4Manager : MonoBehaviour
 
             Explosive.GetComponent<Renderer>().material.color = new Color(0.392f, 0.722f, 0.820f, 0.4509804f);
 
-            primaryDown = InputHandling.RightPrimary;
+            primaryDown = InputUtility.RightPrimary.pressed;
             if (primaryDown && RefCache.HitExists)
             {
                 if (canPlace && !IsMine)
@@ -169,8 +170,8 @@ public class BombDetonate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        secButtonDown = InputHandling.RightSecondary;
-        primaryDown = InputHandling.RightPrimary;
+        secButtonDown = InputUtility.RightSecondary.pressed;
+        primaryDown = InputUtility.RightPrimary.pressed;
         if (secButtonDown)
         {
             if (canExplode)

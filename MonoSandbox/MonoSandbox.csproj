@@ -94,8 +94,8 @@
 		<Reference Include="UnityEngine.XRModule">
 			<HintPath>$(GameAssemblyPath)\UnityEngine.XRModule.dll</HintPath>
 		</Reference>
-		<Reference Include="Utilla">
-			<HintPath>$(PluginsPath)\Utilla\utilla.dll</HintPath>
+		<Reference Include="GorillaLibrary">
+			<HintPath>$(PluginsPath)\GorillaLibrary\GorillaLibrary.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 

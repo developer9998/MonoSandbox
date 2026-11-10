@@ -1,4 +1,5 @@
-﻿using MonoSandbox;
+﻿using GorillaLibrary.Utilities;
+using MonoSandbox;
 using MonoSandbox.Behaviours;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ public class SpringManager : MonoBehaviour
             bool isAllowed = hitInfo.transform.gameObject.name.Contains("MonoObject");
             Cursor.GetComponent<Renderer>().material.color = isAllowed ? new Color(0.392f, 0.722f, 0.820f, 0.4509804f) : new Color(0.8314f, 0.2471f, 0.1569f, 0.4509804f);
 
-            primaryDown = InputHandling.RightPrimary;
+            primaryDown = InputUtility.RightPrimary.pressed;
             if (primaryDown)
             {
                 if (canPlace && isAllowed && RefCache.HitExists)
@@ -161,7 +162,7 @@ public class WeldManager : MonoBehaviour
         if (Cursor != null)
         {
             Cursor.transform.position = hitInfo.point;
-            primaryDown = InputHandling.RightPrimary;
+            primaryDown = InputUtility.RightPrimary.pressed;
 
             bool isAllowed = hitInfo.transform.gameObject.name.Contains("MonoObject") && hitInfo.collider != null && hitInfo.collider.attachedRigidbody != null;
             Cursor.GetComponent<Renderer>().material.color = isAllowed ? new Color(0.392f, 0.722f, 0.820f, 0.4509804f) : new Color(0.8314f, 0.2471f, 0.1569f, 0.4509804f);
@@ -255,7 +256,7 @@ public class BalloonManager : MonoBehaviour
             bool isAllowed = hitInfo.collider != null && hitInfo.collider.attachedRigidbody != null && hitInfo.transform.gameObject.name.Contains("MonoObject");
             Cursor.GetComponent<Renderer>().material.color = isAllowed ? new Color(0.392f, 0.722f, 0.820f, 0.4509804f) : new Color(0.8314f, 0.2471f, 0.1569f, 0.4509804f);
 
-            primaryDown = InputHandling.RightPrimary;
+            primaryDown = InputUtility.RightPrimary.pressed;
             if (primaryDown)
             {
                 if (canPlace && isAllowed && RefCache.HitExists)

@@ -1,4 +1,5 @@
-﻿using MonoSandbox;
+﻿using GorillaLibrary.Utilities;
+using MonoSandbox;
 using MonoSandbox.Behaviours;
 using System;
 using System.Collections;
@@ -13,7 +14,6 @@ public class WeaponManager : MonoBehaviour
     private readonly float weaponMult = 2f;
 
     private bool canFire = true;
-    private readonly bool canChange = true;
     public bool rightHanded = true, editMode, primary, secondary;
 
     public int currentWeapon = 0;
@@ -43,9 +43,9 @@ public class WeaponManager : MonoBehaviour
 
     void Update()
     {
-        trigger = InputHandling.RightTrigger;
-        primary = InputHandling.RightPrimary;
-        secondary = InputHandling.RightSecondary;
+        trigger = InputUtility.RightTrigger.GetValue();
+        primary = InputUtility.RightPrimary.GetValue();
+        secondary = InputUtility.RightSecondary.GetValue();
 
         if (itemsFolder == null)
         {
@@ -490,7 +490,7 @@ public class GrenadeManager : MonoBehaviour
 
         if (editMode)
         {
-            grip = InputHandling.RightGrip;
+            grip = InputUtility.RightGrip.GetValue();
             if (state == GrenadeState.Idle && grip > 0.66f)
             {
                 state = GrenadeState.Activated;
@@ -599,8 +599,8 @@ public class PhysGunManager : MonoBehaviour
             }
 
             Cursor.transform.position = hitInfo.point;
-            trigger = InputHandling.RightTrigger;
-            primary = InputHandling.RightPrimary;
+            trigger = InputUtility.RightTrigger.GetValue();
+            primary = InputUtility.RightPrimary.GetValue();
             joystick = ControllerInputPoller.Primary2DAxis(XRNode.RightHand);
 
             Cursor.GetComponent<Renderer>().material.color = (hitInfo.collider != null && hitInfo.collider.attachedRigidbody != null && hitInfo.transform.gameObject.name.Contains("MonoObject")) ? new Color(0f, 1f, 1f, 0.4509804f) : new Color(1f, 0f, 0f, 0.4509804f);

@@ -1,21 +1,18 @@
 ﻿using BepInEx;
+using GorillaLibrary;
+using GorillaLibrary.Attributes;
+using GorillaLibrary.Utilities;
 using HarmonyLib;
-using MonoSandbox.Behaviours;
 using MonoSandbox.Behaviours.UI;
-using System;
-using System.ComponentModel;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
-using Utilla;
-using Utilla.Attributes;
 using Player = GorillaLocomotion.GTPlayer;
 
 namespace MonoSandbox
 {
-    [ModdedGamemode, Description("HauntedModMenu")]
-    [BepInDependency("org.legoandmars.gorillatag.utilla", "1.5.0")]
     [BepInPlugin(PluginInfo.GUID, PluginInfo.Name, PluginInfo.Version)]
+    [BepInDependency("dev.gorillalibrary"), ModdedGamemode]
     public class Plugin : BaseUnityPlugin
     {
         public static bool InRoom;
@@ -106,14 +103,12 @@ namespace MonoSandbox
 
         public Plugin()
         {
-            Events.GameInitialized += OnGameInitialized;
+            Events.Core.OnGameInitialized += OnGameInitialized;
             new Harmony(PluginInfo.GUID).PatchAll(typeof(Plugin).Assembly);
         }
 
-        public void OnGameInitialized(object sender, EventArgs e)
+        public void OnGameInitialized()
         {
-            gameObject.AddComponent<InputHandling>();
-
             _layerMask = Player.Instance.locomotionEnabledLayers;
             _layerMask |= 1 << 8;
 
@@ -276,7 +271,7 @@ namespace MonoSandbox
 
             if (InRoom && enabled && _initialized)
             {
-                bool isActive = InputHandling.LeftGrip > 0.6f;
+                bool isActive = InputUtility.LeftGrip.pressed;
 
                 if (_list.activeInHierarchy)
                 {

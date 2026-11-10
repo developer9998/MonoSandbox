@@ -1,4 +1,5 @@
-﻿using MonoSandbox;
+﻿using GorillaLibrary.Utilities;
+using MonoSandbox;
 using MonoSandbox.Behaviours;
 using UnityEngine;
 using Player = GorillaLocomotion.GTPlayer;
@@ -22,7 +23,7 @@ public class AirStrikeManager : MonoBehaviour
         {
             Cursor.transform.position = hitInfo.point;
             Cursor.transform.forward = hitInfo.normal;
-            primaryDown = InputHandling.RightPrimary;
+            primaryDown = InputUtility.RightPrimary.pressed;
             if (primaryDown)
             {
                 if (canPlace)

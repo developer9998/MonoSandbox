@@ -1,4 +1,5 @@
-﻿using MonoSandbox;
+﻿using GorillaLibrary.Utilities;
+using MonoSandbox;
 using MonoSandbox.Behaviours;
 using UnityEngine;
 
@@ -26,7 +27,7 @@ public class FreezeManager : MonoBehaviour
 
             Cursor.transform.position = hitInfo.point;
 
-            primaryDown = InputHandling.RightPrimary;
+            primaryDown = InputUtility.RightPrimary.pressed;
             if (primaryDown)
             {
                 if (canPlace && isAllowed)
@@ -83,7 +84,7 @@ public class GravityManager : MonoBehaviour
 
             Cursor.transform.position = hitInfo.point;
 
-            primaryDown = InputHandling.RightPrimary;
+            primaryDown = InputUtility.RightPrimary.pressed;
             if (primaryDown)
             {
                 if (canPlace && hitInfo.transform.gameObject.name.Contains("MonoObject") && hitInfo.collider != null && hitInfo.collider.attachedRigidbody != null)

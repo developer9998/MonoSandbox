@@ -1,5 +1,4 @@
-﻿using GorillaLocomotion;
-using HarmonyLib;
+﻿using HarmonyLib;
 using UnityEngine;
 using Player = GorillaLocomotion.GTPlayer;
 
